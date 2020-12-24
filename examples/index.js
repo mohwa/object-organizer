@@ -1,18 +1,18 @@
 // import { type } from 'emnida';
-import { toObject, copy, copyDeep } from '../lib';
+import { toPlainObject, copy, deepCopy, deepSeal } from '../lib';
 
-console.log(toObject('')); // []
-console.log(toObject('   ')); // ['', '']
-console.log(toObject('test')); // [t, e, s, t]
-console.log(toObject([1, 2, 3]));
-console.log(toObject({ x: 1, y: 2, z: 3 }));
-console.log(toObject({}));
-console.log(toObject([]));
-console.log(toObject(undefined));
-console.log(toObject(null));
-console.log(toObject(true));
+console.log(toPlainObject('')); // []
+console.log(toPlainObject('   ')); // ['', '']
+console.log(toPlainObject('test')); // [t, e, s, t]
+console.log(toPlainObject([1, 2, 3]));
+console.log(toPlainObject({ x: 1, y: 2, z: 3 }));
+console.log(toPlainObject({}));
+console.log(toPlainObject([]));
+console.log(toPlainObject(undefined));
+console.log(toPlainObject(null));
+console.log(toPlainObject(true));
 console.log(
-  toObject(
+  toPlainObject(
     [1, 2, 3],
     function(v) {
       return { v, vv: this };
@@ -78,10 +78,10 @@ const z1 = [
 //   yield 1;
 // };
 
-const _null = copyDeep(null);
+const _null = deepCopy(null);
 console.log(_null);
 
-const xx2 = copyDeep(z1);
+const xx2 = deepCopy(z1);
 
 console.log(xx2);
 console.log(_xxx, xx2[0].x.xx._xxx);
@@ -92,3 +92,9 @@ console.log(_yyy === xx2[0].x.xx._yyy);
 
 console.log(iter1, xx2[0].z.iter1);
 console.log(iter1 === xx2[0].z.iter1);
+
+const o = { x: 1, y: { z: { xx: new Map([['x', 1]]) } } };
+const df = deepSeal(o);
+
+console.log(df);
+console.log(Object.isSealed(o));
