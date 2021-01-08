@@ -1,7 +1,7 @@
 {
   "name": "object-organizer",
-  "version": "0.0.1",
-  "description": "This library can use to handling data of object type with required utility with a polyfill",
+  "version": "0.0.2",
+  "description": "This library is will be used to handling data of object type",
   "keywords": [
     "object",
     "object",
