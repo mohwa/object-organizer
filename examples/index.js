@@ -140,6 +140,9 @@ console.log(
 );
 
 console.log(deepCopy({ x: { y: { x: { y: function() {} } } } }));
+console.log(
+  deepCopy({ x: { y: new Map([['x', { x: { y: function() {}, z: new Set([1, 2, 3]) } }]]) } })
+);
 
 console.log(assign({ x: 1, y: 2 }, { xx: 1 }, { yy: 2 }, { zz: 3 }));
 console.log(entries({ x: 1, y: 2 }));
