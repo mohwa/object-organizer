@@ -95,13 +95,13 @@ toArray(undefined); // []
 toArray(null); // []
 toArray(true); // []
 
-  toArray(
-    [1, 2, 3],
-    function(v) {
-      return { v, _this: this };
-    },
-    { x: 1 }
-  ); // [{ ... }, { ... }, { ... }]
+toArray(
+[1, 2, 3],
+function(v) {
+  return { v, _this: this };
+},
+{ x: 1 }
+); // [{ ... }, { ... }, { ... }]
  ```
 
 ## Copy API
