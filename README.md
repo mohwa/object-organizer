@@ -18,6 +18,8 @@ This library is will be used to handling data of object type
  
  ## Conversion API
  
+ This function converts given iterable object to a certain object
+ 
  ```javascript
 import {
   toPlainObject,
@@ -105,6 +107,8 @@ toArray(
  ```
 
 ## Copy API
+
+The functions will be used a copy or deep-copy an iterable object
  
  ```javascript
 import {
@@ -140,6 +144,8 @@ deepCopy({ x: { y: new Map([['x', { x: { y: function() {}, z: new Set([1, 2, 3])
  ```
 
 ## Other API
+
+The functions will be used a deep based a native functions
 
 ```javascript
 import {
