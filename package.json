@@ -1,13 +1,15 @@
 {
   "name": "object-organizer",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "This library is will be used to handling data of object type",
   "keywords": [
     "object",
-    "object",
     "object data",
-    "polyfill",
-    "object utils"
+    "object utils",
+    "map",
+    "set",
+    "function",
+    "generator"
   ],
   "module": "dist/object-organizer.esm.js",
   "main": "dist/object-organizer.js",
