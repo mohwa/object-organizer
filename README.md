@@ -37,13 +37,13 @@ toPlainObject(undefined); // {}
 toPlainObject(null); // {}
 toPlainObject(true); // {}
 
-  toPlainObject(
-    [1, 2, 3],
-    function(v) {
-      return { v, _this: this };
-    },
-    { x: 1 }
-  ); // { 0: { ... }, 1: { ... }, 2: { ... } }
+toPlainObject(
+  [1, 2, 3],
+  function(v) {
+    return { v, _this: this };
+  },
+  { x: 1 }
+); // { 0: { ... }, 1: { ... }, 2: { ... } }
 
 toMap(''); // Map(0) {}
 toMap('   '); // Map(3) { 0 => " ", 1 => " ", 2 => " "}
@@ -56,13 +56,13 @@ toMap(undefined); // Map(0) {}
 toMap(null); // Map(0) {}
 toMap(true); // Map(0) {}
 
-  toMap(
-    [1, 2, 3],
-    function(v) {
-      return { v, _this: this };
-    },
-    { x: 1 }
-  ); // Map(3) { 0 => { ... }, 1 => { ... }, 2 => { ... }}
+toMap(
+  [1, 2, 3],
+  function(v) {
+    return { v, _this: this };
+  },
+  { x: 1 }
+); // Map(3) { 0 => { ... }, 1 => { ... }, 2 => { ... }}
 
 toSet(''); // Set(0) {}
 toSet('   '); // Set(3) {"t", "e", "s"}
@@ -75,13 +75,13 @@ toSet(undefined); // Set(0) {}
 toSet(null); // Set(0) {}
 toSet(true); // Set(0) {}
 
-  toSet(
-    [1, 2, 3],
-    function(v) {
-      return { v, _this: this };
-    },
-    { x: 1 }
-  ); // Set(3) {{ ... }, { ... }, { ... }}
+toSet(
+  [1, 2, 3],
+  function(v) {
+    return { v, _this: this };
+  },
+  { x: 1 }
+); // Set(3) {{ ... }, { ... }, { ... }}
 
 
 toArray(''); // []
@@ -96,11 +96,11 @@ toArray(null); // []
 toArray(true); // []
 
 toArray(
-[1, 2, 3],
-function(v) {
-  return { v, _this: this };
-},
-{ x: 1 }
+  [1, 2, 3],
+  function(v) {
+    return { v, _this: this };
+  },
+  { x: 1 }
 ); // [{ ... }, { ... }, { ... }]
  ```
 
@@ -120,18 +120,18 @@ copy([11, 22, 33]); // [11, 22, 33]
 copy({ x: 1, y: 2 }); // { x: 1, y: 2 }
 
 copy(
-new Map([
-  ['x', 1],
-  ['y', 2],
-])
+  new Map([
+    ['x', 1],
+    ['y', 2],
+  ])
 ); // Map(2) {"x" => 1, "y" => 2}
 
 copy(new Set([1, 2, 3])); // Set(3) { 1, 2, 3 } 
 
 copy(
-(function*() {
-  yield 1;
-})()
+  (function*() {
+    yield 1;
+  })()
 ); // {}
 
 deepCopy({ x: { y: { x: { y: function() {} } } } }); // { x: { y: { ... } } }
