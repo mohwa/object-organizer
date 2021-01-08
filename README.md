@@ -1,8 +1,6 @@
 # object-organizer
 
-![npm](https://img.shields.io/npm/v/object-organizer) [![](https://data.jsdelivr.com/v1/package/npm/object-organizer/badge)](https://www.jsdelivr.com/package/npm/object-organizer) ![npm bundle size](https://img.shields.io/bundlephobia/min/object-organizer) ![npm](https://img.shields.io/npm/dm/object-organizer) ![NPM](https://img.shields.io/npm/l/object-organizer)
-
-This library can use to handling data of object type
+This library is will be used to handling data of object type
 
 [API Documentation](http://mohwa.github.io/object-organizer)
  

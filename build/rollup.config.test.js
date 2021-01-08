@@ -12,7 +12,7 @@ export default [
       plugins: [
         html(),
         serve({
-          host: 'localhost',
+          host: '192.168.200.123',
           port: 9999,
           contentBase: OUTPUT_PATH,
         }),
