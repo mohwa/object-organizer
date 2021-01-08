@@ -1,5 +1,25 @@
-// import { type } from 'emnida';
-import { toPlainObject, copy, deepCopy, deepSeal } from '../lib';
+import {
+  toPlainObject,
+  toMap,
+  toSet,
+  toArray,
+  copy,
+  deepCopy,
+  assign,
+  entries,
+  getPropDescriptors,
+  deepFreeze,
+  deepGetPropSymbols,
+  deepSeal,
+  deepPreventExtensions,
+  hasProp,
+  deepHasProp,
+  deepHasFrozen,
+  deepHasExtensible,
+  deepHasSealed,
+  hasInstanceOf,
+  of,
+} from '../lib';
 
 console.log(toPlainObject('')); // []
 console.log(toPlainObject('   ')); // ['', '']
@@ -15,7 +35,76 @@ console.log(
   toPlainObject(
     [1, 2, 3],
     function(v) {
-      return { v, vv: this };
+      return { v, _this: this };
+    },
+    { x: 1 }
+  )
+);
+
+console.log(toMap('')); // []
+console.log(toMap('   ')); // ['', '']
+console.log(toMap('test')); // [t, e, s, t]
+console.log(toMap([1, 2, 3]));
+console.log(toMap({ x: 1, y: 2, z: 3 }));
+console.log(toMap({}));
+console.log(toMap([]));
+console.log(toMap(undefined));
+console.log(toMap(null));
+console.log(toMap(true));
+console.log(
+  toMap(
+    [1, 2, 3],
+    function(v) {
+      return { v, _this: this };
+    },
+    { x: 1 }
+  )
+);
+
+console.log(toSet('')); // []
+console.log(toSet('   ')); // ['', '']
+console.log(toSet('test')); // [t, e, s, t]
+console.log(toSet([1, 2, 3]));
+console.log(toSet({ x: 1, y: 2, z: 3 }));
+console.log(
+  toSet(
+    new Map([
+      ['x', 11],
+      ['y', 22],
+      ['z', 33],
+    ])
+  )
+);
+console.log(toSet({}));
+console.log(toSet([]));
+console.log(toSet(undefined));
+console.log(toSet(null));
+console.log(toSet(true));
+console.log(
+  toSet(
+    [1, 2, 3],
+    function(v) {
+      return { v, _this: this };
+    },
+    { x: 1 }
+  )
+);
+
+console.log(toArray('')); // []
+console.log(toArray('   ')); // ['', '']
+console.log(toArray('test')); // [t, e, s, t]
+console.log(toArray([1, 2, 3]));
+console.log(toArray({ x: 1, y: 2, z: 3 }));
+console.log(toArray({}));
+console.log(toArray([]));
+console.log(toArray(undefined));
+console.log(toArray(null));
+console.log(toArray(true));
+console.log(
+  toArray(
+    [1, 2, 3],
+    function(v) {
+      return { v, _this: this };
     },
     { x: 1 }
   )
@@ -27,74 +116,84 @@ console.log(copy(null));
 console.log(copy(function() {}));
 console.log(copy([11, 22, 33]));
 console.log(copy({ x: 1, y: 2 }));
-console.log(
-  copy(
-    new Map([
-      ['x', 1],
-      ['y', 2],
-    ])
-  )
-);
-console.log(copy(new Set([1, 2, 3])));
+
+try {
+  console.log(
+    copy(
+      new Map([
+        ['x', 1],
+        ['y', 2],
+      ])
+    )
+  );
+  console.log(copy(new Set([1, 2, 3])));
+} catch (e) {
+  console.log(e.message);
+}
+
 console.log(
   copy(
     (function*() {
-      yield 11;
+      yield 1;
     })()
   )
 );
 
-const _xxx = new Map();
-_xxx.set('x', 1);
-_xxx.set('y', 2);
-_xxx.set('z', { xxx: 1 });
+console.log(deepCopy({ x: { y: { x: { y: function() {} } } } }));
 
-const _yyy = new Set();
-_yyy.add(11);
-_yyy.add(22);
-_yyy.add(33);
-_yyy.add({ x: 11 });
+console.log(assign({ x: 1, y: 2 }, { xx: 1 }, { yy: 2 }, { zz: 3 }));
+console.log(entries({ x: 1, y: 2 }));
+console.log(getPropDescriptors({ x: 1, y: { z: 2 } }));
 
-console.log(44444, _yyy.entries());
+try {
+  const o1 = { [Symbol('x2')]: 1 };
+  const m = deepGetPropSymbols(o1);
+  console.log(o1);
+  console.log(m.get(o1));
+} catch (e) {
+  console.log(e.message);
+}
 
-const iter1 = (function* gen1() {
-  yield 2;
-})();
+const freezeObject = { x: { y: { z: () => {} } } };
+deepFreeze(freezeObject);
 
-const z1 = [
-  {
-    x: { xx: { _xxx, _yyy } },
-    y: 2,
-    z: {
-      newMap: new Map([
-        ['xxx', 111],
-        ['yyy', { zzz: 1 }],
-      ]),
-      iter1,
-    },
-  },
-];
-// const gen1 = function* gen1() {
-//   yield 1;
-// };
+console.log(Object.isFrozen(freezeObject.x.y.z));
 
-const _null = deepCopy(null);
-console.log(_null);
+const sealObject = { x: { y: { z: () => {} } } };
+deepSeal(sealObject);
 
-const xx2 = deepCopy(z1);
+console.log(Object.isSealed(sealObject.x.y.z));
 
-console.log(xx2);
-console.log(_xxx, xx2[0].x.xx._xxx);
-console.log(_xxx === xx2[0].x.xx._xxx);
+const extensibleObject = { x: { y: { z: () => {} } } };
+deepPreventExtensions(extensibleObject);
 
-console.log(_yyy, xx2[0].x.xx._yyy);
-console.log(_yyy === xx2[0].x.xx._yyy);
+console.log(Object.isExtensible(extensibleObject.x.y.z));
 
-console.log(iter1, xx2[0].z.iter1);
-console.log(iter1 === xx2[0].z.iter1);
+const hasPropObject = { x: { y: { z: () => {} } } };
 
-const o = { x: 1, y: { z: { xx: new Map([['x', 1]]) } } };
-const df = deepSeal(o);
+console.log(hasProp(hasPropObject, 'x'));
 
-console.log(df);
-console.log(Object.isSealed(o));
+const deepHasPropObject = { x: { y: { z: () => {}, x: { y: { zz: 1 } } } } };
+
+console.log(deepHasProp(deepHasPropObject, 'zz'));
+
+const deepHasFrozenObject = { x: { y: { z: () => {} } } };
+deepFreeze(deepHasFrozenObject.x.y.z);
+
+console.log(deepHasFrozen(deepHasFrozenObject));
+
+const deepHasExtensibleObject = { x: { y: { z: () => {} } } };
+deepPreventExtensions(deepHasExtensibleObject.x.y.z);
+
+console.log(deepHasExtensible(deepHasExtensibleObject.x.y.z));
+
+const deepHasSealedObject = { x: { y: { z: () => {} } } };
+deepSeal(deepHasSealedObject.x.y.z);
+
+console.log(deepHasSealed(deepHasSealedObject.x.y.z));
+
+const hasInstanceOfConstructor = function() {};
+
+console.log(hasInstanceOf(new hasInstanceOfConstructor(), hasInstanceOfConstructor));
+
+console.log(of(1, 2, 3));
