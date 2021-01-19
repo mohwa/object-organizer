@@ -1,6 +1,6 @@
 {
   "name": "object-organizer",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "This library is will be used to handling data of object type",
   "keywords": [
     "object",
@@ -53,7 +53,6 @@
     "@rollup/plugin-commonjs": "^17.0.0",
     "@rollup/plugin-html": "^0.2.0",
     "@rollup/plugin-node-resolve": "^11.0.0",
-    "array-organizer": "^1.0.6",
     "babel-eslint": "^10.0.3",
     "babel-jest": "^26.3.0",
     "babel-loader": "^8.0.6",
@@ -75,7 +74,8 @@
     "rollup-plugin-serve": "^1.1.0",
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-uglify": "^6.0.4",
-    "shelljs": "^0.8.4"
+    "shelljs": "^0.8.4",
+    "array-organizer": "^1.0.12"
   },
   "husky": {
     "hooks": {
