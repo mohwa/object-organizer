@@ -7,9 +7,7 @@ import {
   deepCopy,
   assign,
   entries,
-  getPropDescriptors,
   deepFreeze,
-  deepGetPropSymbols,
   deepSeal,
   deepPreventExtensions,
   hasProp,
@@ -21,10 +19,10 @@ import {
   of,
 } from '../lib';
 
-console.log(toPlainObject('')); // []
+console.log(toPlainObject('')); // {}
 console.log(toPlainObject('   ')); // ['', '']
 console.log(toPlainObject('test')); // [t, e, s, t]
-console.log(toPlainObject([1, 2, 3]));
+console.log(toPlainObject([1, 2, 3])); // {0: 1, 1: 2, 2: 3}
 console.log(toPlainObject({ x: 1, y: 2, z: 3 }));
 console.log(toPlainObject({}));
 console.log(toPlainObject([]));
@@ -44,8 +42,8 @@ console.log(
 console.log(toMap('')); // []
 console.log(toMap('   ')); // ['', '']
 console.log(toMap('test')); // [t, e, s, t]
-console.log(toMap([1, 2, 3]));
-console.log(toMap({ x: 1, y: 2, z: 3 }));
+console.log(toMap([1, 2, 3])); // Map(3){"x" => 1, "y" => 2, "z" => 3}
+console.log(555, toMap({ x: 1, y: 2, z: 3 }));
 console.log(toMap({}));
 console.log(toMap([]));
 console.log(toMap(undefined));
@@ -65,7 +63,7 @@ console.log(toSet('')); // []
 console.log(toSet('   ')); // ['', '']
 console.log(toSet('test')); // [t, e, s, t]
 console.log(toSet([1, 2, 3]));
-console.log(toSet({ x: 1, y: 2, z: 3 }));
+console.log(666, toSet({ x: 1, y: 2, z: 3 }));
 console.log(
   toSet(
     new Map([
@@ -144,18 +142,74 @@ console.log(
   deepCopy({ x: { y: new Map([['x', { x: { y: function() {}, z: new Set([1, 2, 3]) } }]]) } })
 );
 
-console.log(assign({ x: 1, y: 2 }, { xx: 1 }, { yy: 2 }, { zz: 3 }));
-console.log(entries({ x: 1, y: 2 }));
-console.log(getPropDescriptors({ x: 1, y: { z: 2 } }));
+console.log(777, assign({ x: 1, y: 2 }, { xx: 1 }, { yy: 2 }, { zz: 3 }));
+console.log(888, assign({ x: 1, y: 2 }, { xx: 1 }, new Map([['yy', 2]]), { zz: 3 }));
+console.log(888, assign({ x: 1, y: 2 }, { xx: 1 }, new Set([3, 4, 5, 66]), { zz: 3 }));
+console.log(
+  888,
+  assign({ x: 1, y: 2 }, 8888, 'test', null, new Set([3, 4, 5, 66, null, undefined]), { zz: 3 })
+);
+console.log(
+  10,
+  assign(
+    [],
+    function() {},
+    (function*() {
+      yield 6666;
+    })(),
+    null,
+    new Set([3, 4, 5, 66, null, undefined]),
+    { zz: 3 }
+  )
+);
+console.log(
+  888,
+  assign(
+    new Set([]),
+    8888,
+    'test',
+    null,
+    new Set([3, 4, 5, 66, null, undefined]),
+    { zz: 3 },
+    new Map([['zz1', 'zz1']])
+  )
+);
+console.log(
+  888,
+  assign(new Map([]), 8888, 'test', null, new Set([3, 4, 5, 66, null, undefined]), { zz: 3 })
+);
+console.log(
+  9999,
+  assign(
+    new Map([]),
+    function() {},
+    (function*() {
+      yield 6666;
+    })(),
+    null,
+    new Set([3, 4, 5, 66, null, undefined]),
+    { zz: 3 }
+  )
+);
 
-try {
-  const o1 = { [Symbol('x2')]: 1 };
-  const m = deepGetPropSymbols(o1);
-  console.log(o1);
-  console.log(m.get(o1));
-} catch (e) {
-  console.log(e.message);
-}
+console.log(
+  assign(
+    new Set([]),
+    (function*() {
+      yield 6666;
+    })(),
+    null,
+    [3, 4, 5, 6],
+    new Set([3, 4, 5, 66, null, undefined]),
+    { zz: 3 }
+  )
+);
+console.log(
+  assign(new Set([33, 44, 55]), 8888, 'test', null, new Set([3, 4, 5, 66, null, undefined]), {
+    zz: 3,
+  })
+);
+console.log(entries({ x: 1, y: 2 }));
 
 const freezeObject = { x: { y: { z: () => {} } } };
 deepFreeze(freezeObject);
