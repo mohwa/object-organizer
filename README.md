@@ -317,10 +317,14 @@ console.log(deepHasSealed(deepHasSealedObject.x.y.z)); // true
 ```javascript
 import {
   entries,
-  of
+  of,
+  findIndex,
 } from 'object-organizer';
  
 entries({ x: 1, y: 2, z: new Map([['x', 1]]) }); // [ [ 'x', 1 ], [ 'y', 2 ], [ 'z', Map { 'x' => 1 } ] ]
 
-of(1, 2, 3) // [ 1, 2, 3 ]
+of(1, 2, 3); // [ 1, 2, 3 ]
+
+findIndex(['1', 2, 3], v => typeof v === 'number'); // 1
+findIndex({ x: 11, y: 22, z: 33 }, ({ v }) => v === 33); // 2
  ```

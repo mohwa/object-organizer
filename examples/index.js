@@ -20,6 +20,7 @@ import {
   preInsert,
   insert,
   size,
+  findIndex,
 } from '../lib';
 
 console.log(assign([1, 2, 3], 33, 33, 44)); // [ 1, 2, 3, 33, 33, 44 ]
@@ -251,3 +252,6 @@ const hasInstanceOfConstructor = function() {};
 console.log(hasInstanceOf(new hasInstanceOfConstructor(), hasInstanceOfConstructor));
 
 console.log(of(1, 2, 3));
+
+console.log(findIndex(['1', 2, 3], v => typeof v === 'number')); // 1
+console.log(findIndex({ x: 11, y: 22, z: 33 }, ({ v }) => v === 33)); // 2
