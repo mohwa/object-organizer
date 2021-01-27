@@ -63,20 +63,6 @@ toPlainObject(
   { x: 1 }
 ); // { '0': { v: 1, _this: { x: 1 } },'1': { v: 2, _this: { x: 1 } },'2': { v: 3, _this: { x: 1 } }}
 
-Map { 0 => 1, 1 => 2, 2 => 3 }
-Map { 'x' => 1, 'y' => 2, 'z' => 3 }
-Map {}
-Map {}
-Map {}
-Map {}
-Map {}
-Map {
-  0 => { v: 1, _this: { x: 1 } },
-  1 => { v: 2, _this: { x: 1 } },
-  2 => { v: 3, _this: { x: 1 } }
-}
-
-
 toMap(''); // Map {}
 toMap('   '); // Map { 0 => ' ', 1 => ' ', 2 => ' ' }
 toMap('test'); // Map { 0 => 't', 1 => 'e', 2 => 's', 3 => 't' }
