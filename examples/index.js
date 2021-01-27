@@ -17,21 +17,21 @@ import {
   deepHasSealed,
   hasInstanceOf,
   of,
-  preInsert,
   insert,
   size,
   findIndex,
+  unshift,
+  push,
+  insertBefore,
+  insertAfter,
 } from '../lib';
 
 console.log(assign([1, 2, 3], 33, 33, 44)); // [ 1, 2, 3, 33, 33, 44 ]
 console.log(assign(new Set([1, 2, 3]), 33, 44, 55));
 console.log(assign([1, 2, 3], { x: 1 }));
 
-console.log(preInsert([1, 2, 3, 4], 11));
 console.log(insert([1, 2, 3, 4], 1, 22));
 console.log(size(new Map([['x', 1]])));
-console.log(preInsert({ xx: 22, yy: 33 }, 3));
-console.log(preInsert(new Set([1, 2, 3, 4]), 113333));
 
 console.log(toPlainObject('')); // {}
 console.log(toPlainObject('   ')); // ['', '']
@@ -255,3 +255,17 @@ console.log(of(1, 2, 3));
 
 console.log(findIndex(['1', 2, 3], v => typeof v === 'number')); // 1
 console.log(findIndex({ x: 11, y: 22, z: 33 }, ({ v }) => v === 33)); // 2
+
+console.log(unshift([], 11, 22, 33));
+console.log(unshift([1, 2, 3], 11, 22, 33));
+
+console.log(push([], 11, 22, 33));
+console.log(push([1, 2, 3], 11, 22, 33));
+
+console.log(insertBefore([1, 2, 3], -1, 22, 33));
+console.log(insertBefore([1, 2, 3], 88, 22, 33));
+console.log(insertBefore([1, 2, 3], 2, 22, 33));
+
+console.log(insertAfter([1, 2, 3], -1, 22, 33));
+console.log(insertAfter([1, 2, 3], 88, 22, 33));
+console.log(insertAfter([1, 2, 3], 1, 22, 33));

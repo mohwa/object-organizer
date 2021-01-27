@@ -176,7 +176,6 @@ import {
   find,
   asc,
   desc,
-  preInsert,
   insert,
   replace,
   remove,
@@ -193,7 +192,11 @@ import {
   join,
   size,
   hasProp,
-  hasInstanceOf
+  hasInstanceOf,
+  unshift,
+  push,
+  insertBefore,
+  insertAfter
 } from 'object-organizer';
 
 assign([1, 2, 3], 33, 33, 44); // [ 1, 2, 3, 33, 33, 44 ]
@@ -243,13 +246,24 @@ desc(['d', true, undefined, 0xff, 'ee', [], 2e4, () => {}, 't', 0]); // [20000, 
 ascBy([{ x: 1, y: 11 }, { x: 2, y: 22 }, { x: 3, y: 33 }], 'y'); // [{ ...y: 11 }, { ...y: 22 }, { ...y: 33 }]
 descBy([{ x: 1, y: 11 }, { x: 2, y: 22 }, { x: 3, y: 33 }], 'y'); // [{ ...y: 33 }, { ...y: 22 }, { ...y: 11 }]
  
-preInsert([1, 2, 3, 4], 11); // [11, 22, 2, 3, 4]
-preInsert({ xx: 22, yy: 33 }, 3); // [3, { k: 'xx', v: 22 }, { k: 'yy', v: 33 }]
-
 // Will be inserted a 22 to index 1
 insert([1, 2, 3, 4], 1, 22); // [1, 22, 2, 3, 4]
 // Will be inserted a 22 to index 1 and add 'ADD'
 replace([1, 2, 3, 4], 2, 33, 'ADD'); // [1, 2, 33, 'ADD', 4]
+
+unshift([], 11, 22, 33); // [ 11, 22, 33 ]
+unshift([1, 2, 3], 11, 22, 33); // [ 11, 22, 33, 1, 2, 3 ]
+
+push([], 11, 22, 33); // [ 11, 22, 33 ]
+push([1, 2, 3], 11, 22, 33); // [ 1, 2, 3, 11, 22, 33 ]
+
+insertBefore([1, 2, 3], -1, 22, 33); // [ 22, 33, 1, 2, 3 ]
+insertBefore([1, 2, 3], 88, 22, 33); // [ 1, 2, 3, 22, 33 ]
+insertBefore([1, 2, 3], 2, 22, 33); // [ 1, 22, 33, 2, 3 ]
+
+insertAfter([1, 2, 3], -1, 22, 33); // [ 22, 33, 1, 2, 3 ]
+insertAfter([1, 2, 3], 88, 22, 33); // [ 1, 2, 3, 22, 33 ]
+insertAfter([1, 2, 3], 1, 22, 33); // [ 1, 2, 22, 33, 3 ]
 
 remove([1, 2, 3, 4], 3); // [1, 2, 3]
 removeAll([1, 2, 3, 4], 1); // [1]
