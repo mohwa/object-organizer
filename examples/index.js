@@ -17,7 +17,20 @@ import {
   deepHasSealed,
   hasInstanceOf,
   of,
+  preInsert,
+  insert,
+  size,
 } from '../lib';
+
+console.log(assign([1, 2, 3], 33, 33, 44)); // [ 1, 2, 3, 33, 33, 44 ]
+console.log(assign(new Set([1, 2, 3]), 33, 44, 55));
+console.log(assign([1, 2, 3], { x: 1 }));
+
+console.log(preInsert([1, 2, 3, 4], 11));
+console.log(insert([1, 2, 3, 4], 1, 22));
+console.log(size(new Map([['x', 1]])));
+console.log(preInsert({ xx: 22, yy: 33 }, 3));
+console.log(preInsert(new Set([1, 2, 3, 4]), 113333));
 
 console.log(toPlainObject('')); // {}
 console.log(toPlainObject('   ')); // ['', '']
@@ -38,12 +51,11 @@ console.log(
     { x: 1 }
   )
 );
-
 console.log(toMap('')); // []
 console.log(toMap('   ')); // ['', '']
 console.log(toMap('test')); // [t, e, s, t]
 console.log(toMap([1, 2, 3])); // Map(3){"x" => 1, "y" => 2, "z" => 3}
-console.log(555, toMap({ x: 1, y: 2, z: 3 }));
+console.log(toMap({ x: 1, y: 2, z: 3 }));
 console.log(toMap({}));
 console.log(toMap([]));
 console.log(toMap(undefined));
@@ -58,21 +70,11 @@ console.log(
     { x: 1 }
   )
 );
-
 console.log(toSet('')); // []
 console.log(toSet('   ')); // ['', '']
 console.log(toSet('test')); // [t, e, s, t]
 console.log(toSet([1, 2, 3]));
-console.log(666, toSet({ x: 1, y: 2, z: 3 }));
-console.log(
-  toSet(
-    new Map([
-      ['x', 11],
-      ['y', 22],
-      ['z', 33],
-    ])
-  )
-);
+console.log(toSet({ x: 1, y: 2, z: 3 }));
 console.log(toSet({}));
 console.log(toSet([]));
 console.log(toSet(undefined));
@@ -87,7 +89,6 @@ console.log(
     { x: 1 }
   )
 );
-
 console.log(toArray('')); // []
 console.log(toArray('   ')); // ['', '']
 console.log(toArray('test')); // [t, e, s, t]
@@ -107,7 +108,6 @@ console.log(
     { x: 1 }
   )
 );
-
 console.log(copy(1));
 console.log(copy(undefined));
 console.log(copy(null));
@@ -124,10 +124,12 @@ try {
       ])
     )
   );
-  console.log(copy(new Set([1, 2, 3])));
+  // console.log(copy(new Set([1, 2, 3])));
 } catch (e) {
   console.log(e.message);
 }
+
+console.log(copy(new Set([1, 2, 3]))); // Set(3) { 1, 2, 3 }
 
 console.log(
   copy(
@@ -141,7 +143,6 @@ console.log(deepCopy({ x: { y: { x: { y: function() {} } } } }));
 console.log(
   deepCopy({ x: { y: new Map([['x', { x: { y: function() {}, z: new Set([1, 2, 3]) } }]]) } })
 );
-
 console.log(777, assign({ x: 1, y: 2 }, { xx: 1 }, { yy: 2 }, { zz: 3 }));
 console.log(888, assign({ x: 1, y: 2 }, { xx: 1 }, new Map([['yy', 2]]), { zz: 3 }));
 console.log(888, assign({ x: 1, y: 2 }, { xx: 1 }, new Set([3, 4, 5, 66]), { zz: 3 }));
@@ -209,40 +210,37 @@ console.log(
     zz: 3,
   })
 );
-console.log(entries({ x: 1, y: 2 }));
+console.log(entries({ x: 1, y: 2, z: new Map([['x', 1]]) }));
+const sealObject = { x: { y: { z: () => {} } } };
+deepSeal(sealObject);
+
+console.log(Object.isSealed(sealObject.x.y.z));
+
+const hasPropObject = { x: { y: { z: () => {} } } };
+console.log(hasProp(hasPropObject, 'x'));
 
 const freezeObject = { x: { y: { z: () => {} } } };
 deepFreeze(freezeObject);
 
 console.log(Object.isFrozen(freezeObject.x.y.z));
 
-const sealObject = { x: { y: { z: () => {} } } };
-deepSeal(sealObject);
-
-console.log(Object.isSealed(sealObject.x.y.z));
-
 const extensibleObject = { x: { y: { z: () => {} } } };
 deepPreventExtensions(extensibleObject);
 
-console.log(Object.isExtensible(extensibleObject.x.y.z));
-
-const hasPropObject = { x: { y: { z: () => {} } } };
-
-console.log(hasProp(hasPropObject, 'x'));
+console.log(Object.isExtensible(extensibleObject.x.y.z)); // false
 
 const deepHasPropObject = { x: { y: { z: () => {}, x: { y: { zz: 1 } } } } };
-
 console.log(deepHasProp(deepHasPropObject, 'zz'));
+
+const deepHasExtensibleObject = { x: { y: { z: () => {} } } };
+deepPreventExtensions(deepHasExtensibleObject.x.y.z);
+
+console.log(deepHasExtensible(deepHasExtensibleObject.x.y.z)); // false
 
 const deepHasFrozenObject = { x: { y: { z: () => {} } } };
 deepFreeze(deepHasFrozenObject.x.y.z);
 
 console.log(deepHasFrozen(deepHasFrozenObject));
-
-const deepHasExtensibleObject = { x: { y: { z: () => {} } } };
-deepPreventExtensions(deepHasExtensibleObject.x.y.z);
-
-console.log(deepHasExtensible(deepHasExtensibleObject.x.y.z));
 
 const deepHasSealedObject = { x: { y: { z: () => {} } } };
 deepSeal(deepHasSealedObject.x.y.z);
@@ -250,7 +248,6 @@ deepSeal(deepHasSealedObject.x.y.z);
 console.log(deepHasSealed(deepHasSealedObject.x.y.z));
 
 const hasInstanceOfConstructor = function() {};
-
 console.log(hasInstanceOf(new hasInstanceOfConstructor(), hasInstanceOfConstructor));
 
 console.log(of(1, 2, 3));
