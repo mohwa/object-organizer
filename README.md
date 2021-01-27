@@ -26,7 +26,7 @@
 
 # API Documentation
 
-[API Documentation](http://mohwa.github.io/object-organizer)
+http://mohwa.github.io/object-organizer
  
  # Support Platforms
   
