@@ -61,6 +61,16 @@
                 
                   
                   <li><a
+                    href='#toarray'
+                    class=' ppn__menu-item'>
+                    toArray
+                    
+                  </a>
+                  
+                  </li>
+                
+                  
+                  <li><a
                     href='#assign'
                     class=' ppn__menu-item'>
                     assign
@@ -254,16 +264,6 @@
                     href='#foreach'
                     class=' ppn__menu-item'>
                     forEach
-                    
-                  </a>
-                  
-                  </li>
-                
-                  
-                  <li><a
-                    href='#toarray'
-                    class=' ppn__menu-item'>
-                    toArray
                     
                   </a>
                   
@@ -706,6 +706,101 @@
     
       
       <pre class='p1 overflow-auto round fill-light'>toSet({ <span class="hljs-attr">x</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">y</span>: <span class="hljs-number">2</span>, <span class="hljs-attr">z</span>: <span class="hljs-number">3</span> }) <span class="hljs-comment">// Set(3){{ ... }, { ... }, { ... }</span></pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+        
+      
+        
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='toarray'>
+      toArray
+    </h3>
+    
+    
+  </div>
+  
+
+  <div class="markdown-body">
+    <p>This function converts an iterable object or a plain object to new an array object</p>
+
+  </div>
+
+  <div class='pre p1 fill-light mt0'>toArray</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>v</span> <code class='quiet'>((Iterable | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>))</code>
+	    An iterable object or a plain object
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>callback</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">function</a>?)</code>
+	    Function which will be call on every element of an iterable object or a plain object
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>context</span> <code class='quiet'>(any?)</code>
+	    Value which will be use as context(this) when executed callback function
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></code>:
+        
+
+      
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>toArray({ <span class="hljs-attr">x</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">y</span>: <span class="hljs-number">2</span>, <span class="hljs-attr">z</span>: <span class="hljs-number">3</span> }); <span class="hljs-comment">// [{ k: 'x', v: 1 }, { k: 'y', v: 2 }, { k: 'z', v: 3 }]</span></pre>
     
   
 
@@ -2381,101 +2476,6 @@
     
       
       <pre class='p1 overflow-auto round fill-light'>forEach(<span class="hljs-string">'test'</span>, (v, k) =&gt; <span class="hljs-built_in">console</span>.log(v)); <span class="hljs-comment">// 't', 'e', 's', 't'</span></pre>
-    
-  
-
-  
-
-  
-
-  
-</section>
-
-        
-      
-        
-          <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-  <div class='clearfix'>
-    
-    <h3 class='fl m0' id='toarray'>
-      toArray
-    </h3>
-    
-    
-  </div>
-  
-
-  <div class="markdown-body">
-    <p>This function converts an iterable object or a plain object to new an array object</p>
-
-  </div>
-
-  <div class='pre p1 fill-light mt0'>toArray</div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>v</span> <code class='quiet'>((Iterable | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>))</code>
-	    An iterable object or a plain object
-
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>callback</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">function</a>?)</code>
-	    Function which will be call on every element of an iterable object or a plain object
-
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>context</span> <code class='quiet'>(any?)</code>
-	    Value which will be use as context(this) when executed callback function
-
-          </div>
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></code>:
-        
-
-      
-    
-  
-
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Example</div>
-    
-      
-      <pre class='p1 overflow-auto round fill-light'>toArray({ <span class="hljs-attr">x</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">y</span>: <span class="hljs-number">2</span>, <span class="hljs-attr">z</span>: <span class="hljs-number">3</span> }); <span class="hljs-comment">// [{ k: 'x', v: 1 }, { k: 'y', v: 2 }, { k: 'z', v: 3 }]</span></pre>
     
   
 
