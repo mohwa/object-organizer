@@ -3,6 +3,7 @@ import { nodeResolve } from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 
 export const OUTPUT_PATH = 'dist';
+export const OUTPUT_NAME = 'objectOrganizer';
 
 export function mergeEntryConfig(options = {}) {
   const plugins = options.plugins || [];
