@@ -45,7 +45,7 @@
     /**
      * Checks to see if this device supports touch. Uses criteria pulled from Modernizr:
      * https://github.com/Modernizr/Modernizr/blob/da22eb27631fc4957f67607fe6042e85c0a84656/feature-detects/touchevents.js#L40
-     * @returns {Boolean} - true if the current device supports touch.
+     * @return {Boolean} - true if the current device supports touch.
      */
     this.isTouchDevice = function() {
       return !!(
@@ -58,7 +58,7 @@
      * Add anchor links to page elements.
      * @param  {String|Array|Nodelist} selector - A CSS selector for targeting the elements you wish to add anchor links
      *                                            to. Also accepts an array or nodeList containing the relavant elements.
-     * @returns {this}                           - The AnchorJS object
+     * @return {this}                           - The AnchorJS object
      */
     this.add = function(selector) {
       var elements,
@@ -187,7 +187,7 @@
      * Removes all anchorjs-links from elements targed by the selector.
      * @param  {String|Array|Nodelist} selector - A CSS selector string targeting elements with anchor links,
      *                                            OR a nodeList / array containing the DOM elements.
-     * @returns {this}                           - The AnchorJS object
+     * @return {this}                           - The AnchorJS object
      */
     this.remove = function(selector) {
       var index,
@@ -223,7 +223,7 @@
      * remove extra hyphens, truncate, trim hyphens, and make lowercase.
      *
      * @param  {String} text - Any text. Usually pulled from the webpage element we are linking to.
-     * @returns {String}      - hyphen-delimited text for use in IDs and URLs.
+     * @return {String}      - hyphen-delimited text for use in IDs and URLs.
      */
     this.urlify = function(text) {
       // Regex for finding the nonsafe URL characters (many need escaping): & +$,:;=?@"#{}|^~[`%!'<>]./()*\
@@ -254,7 +254,7 @@
      * Determines if this element already has an AnchorJS link on it.
      * Uses this technique: http://stackoverflow.com/a/5898748/1154642
      * @param    {HTMLElemnt}  el - a DOM node
-     * @returns   {Boolean}     true/false
+     * @return   {Boolean}     true/false
      */
     this.hasAnchorJSLink = function(el) {
       var hasLeftAnchor =
@@ -270,7 +270,7 @@
      * It also throws errors on any other inputs. Used to handle inputs to .add and .remove.
      * @param  {String|Array|Nodelist} input - A CSS selector string targeting elements with anchor links,
      *                                         OR a nodeList / array containing the DOM elements.
-     * @returns {Array} - An array containing the elements we want.
+     * @return {Array} - An array containing the elements we want.
      */
     function _getElements(input) {
       var elements;

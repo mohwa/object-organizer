@@ -53,14 +53,18 @@ for (var j = 0; j < items.length; j++) {
 
 function toggleSibling() {
   var stepSibling = this.parentNode.getElementsByClassName('toggle-target')[0];
+  var sibling = this.parentNode.getElementsByClassName('toggle-sibling')[0];
   var icon = this.getElementsByClassName('icon')[0];
   var klass = 'display-none';
+  var red = 'ppn__menu-item-red';
   if (stepSibling.classList.contains(klass)) {
     stepSibling.classList.remove(klass);
     icon.innerHTML = '▾';
+    sibling.classList.add(red);
   } else {
     stepSibling.classList.add(klass);
     icon.innerHTML = '▸';
+    sibling.classList.remove(red);
   }
 }
 
@@ -113,6 +117,15 @@ split_left.style.overflow = 'hidden';
 var cw_without_sb = split_left.clientWidth;
 split_left.style.overflow = '';
 
+// Need to add:
+// - Half of gutterSize (i.e. 10) because gutter will take that much from each.
+// - Scrollbar width (cw_with_sb - cw_without_sb), if it takes up existing
+//   space (Firefox) rather than adding the scrollbar to the side (Chrome)
+var percent_left =
+  ((split_left.getBoundingClientRect().width + 10 + cw_without_sb - cw_with_sb) /
+    split_parent.getBoundingClientRect().width) *
+  100;
+
 Split(['#split-left', '#split-right'], {
   elementStyle: function(dimension, size, gutterSize) {
     return {
@@ -124,8 +137,8 @@ Split(['#split-left', '#split-right'], {
       'flex-basis': gutterSize + 'px',
     };
   },
-  gutterSize: 20,
-  sizes: [33, 67],
+  gutterSize: 32,
+  sizes: [percent_left, 100 - percent_left],
 });
 
 // Chrome doesn't remember scroll position properly so do it ourselves.
