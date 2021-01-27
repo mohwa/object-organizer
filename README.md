@@ -263,7 +263,7 @@ const hasInstanceOfConstructor = function() {};
 hasInstanceOf(new hasInstanceOfConstructor(), hasInstanceOfConstructor); // true
 ``` 
 
-# Deep dive API
+# Deep Dive API
 
 That apis will be used a deep based a native functions
 
