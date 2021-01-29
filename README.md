@@ -216,7 +216,7 @@ forEach(new Set([1, 2, 3]), (v) => console.log(v)); // 1, 2, 3
 indexOf([1, 2, 3], 2); // 1
 indexOf({ x: 1, y: 2, yy: { zz: 3 } }, 44); // -1
 
-lastIndexOf([1, 2, 3], 2); // 1
+lastIndexOf([1, 2, 3], 3); // 2
 lastIndexOf({ x: 1, y: 2, yy: { zz: 3 } }, 44); // -1
 
 join([1, 2, 3], '-') // '1-2-3'
