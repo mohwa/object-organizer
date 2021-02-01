@@ -22,8 +22,6 @@ import {
   findIndex,
   unshift,
   push,
-  insertBefore,
-  insertAfter,
 } from '../lib';
 
 console.log(assign([1, 2, 3], 33, 33, 44)); // [ 1, 2, 3, 33, 33, 44 ]
@@ -261,11 +259,3 @@ console.log(unshift([1, 2, 3], 11, 22, 33));
 
 console.log(push([], 11, 22, 33));
 console.log(push([1, 2, 3], 11, 22, 33));
-
-console.log(insertBefore([1, 2, 3], -1, 22, 33));
-console.log(insertBefore([1, 2, 3], 88, 22, 33));
-console.log(insertBefore([1, 2, 3], 2, 22, 33));
-
-console.log(insertAfter([1, 2, 3], -1, 22, 33));
-console.log(insertAfter([1, 2, 3], 88, 22, 33));
-console.log(insertAfter([1, 2, 3], 1, 22, 33));

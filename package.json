@@ -1,6 +1,6 @@
 {
   "name": "object-organizer",
-  "version": "1.1.4",
+  "version": "1.2.0",
   "description": "This library is will be used to handling data of object type",
   "keywords": [
     "object",
@@ -55,7 +55,7 @@
     "@rollup/plugin-commonjs": "^17.0.0",
     "@rollup/plugin-html": "^0.2.0",
     "@rollup/plugin-node-resolve": "^11.0.0",
-    "array-organizer": "^1.4.2",
+    "array-organizer": "^1.5.3",
     "babel-eslint": "^10.0.3",
     "babel-jest": "^26.3.0",
     "babel-loader": "^8.0.6",
