@@ -103,6 +103,7 @@ toSet(
   { x: 1 }
 ); // Set {{ v: 1, _this: { x: 1 } },{ v: 2, _this: { x: 1 } },{ v: 3, _this: { x: 1 } }}
 
+// toSetAll converts an any element unlike a toSet
 toSetAll('1'); // Set { '1' }
 toSetAll(1); // Set { 1 }
 toSetAll(true); // Set { true }
