@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset='utf-811' />
-  <title>object-organizer 1.2.0 | Documentation</title>
+  <title>object-organizer 1.2.1 | Documentation</title>
   <meta name='viewport' content='width=device-width,initial-scale=1'>
   <link href='assets/bass.css' rel='stylesheet' />
   <link href='assets/style.css' rel='stylesheet' />
@@ -15,7 +15,7 @@
       <div class='inner'>
         <div class='page__headline'>
           <h1 class='mb0 no-anchor page__title'><a style='color:unset' href="https://github.com/mohwa/object-organizer#readme">object-organizer</a></h1>
-          <p class='mb1 page__subtitle'><code>1.2.0</code></p>
+          <p class='mb1 page__subtitle'><code>1.2.1</code></p>
         </div>
 
         <a id='menu-toggle' href='#prime-nav' title='Show/hide menu' class='menu-toggle'><span>Browse</span></a>
@@ -61,9 +61,29 @@
                 
                   
                   <li><a
+                    href='#tosetall'
+                    class=' ppn__menu-item'>
+                    toSetAll
+                    
+                  </a>
+                  
+                  </li>
+                
+                  
+                  <li><a
                     href='#toarray'
                     class=' ppn__menu-item'>
                     toArray
+                    
+                  </a>
+                  
+                  </li>
+                
+                  
+                  <li><a
+                    href='#toarrayall'
+                    class=' ppn__menu-item'>
+                    toArrayAll
                     
                   </a>
                   
@@ -714,6 +734,101 @@
   
   <div class='clearfix'>
     
+    <h3 class='fl m0' id='tosetall'>
+      toSetAll
+    </h3>
+    
+    
+  </div>
+  
+
+  <div class="markdown-body">
+    <p>This function converts an any value to new a set object</p>
+
+  </div>
+
+  <div class='pre p1 fill-light mt0'>toSetAll(v: any, callback: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">function</a>?, context: any?): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;any></div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>v</span> <code class='quiet'>(any)</code>
+	    An any value
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>callback</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">function</a>?)</code>
+	    Function which will be call on every element of an iterable object or a plain object
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>context</span> <code class='quiet'>(any?)</code>
+	    Value which will be use as context(this) when executed callback function
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;any></code>:
+        New set object
+
+      
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>toSetAll(<span class="hljs-literal">undefined</span>) <span class="hljs-comment">// Set { undefined }</span></pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+        
+      
+        
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
     <h3 class='fl m0' id='toarray'>
       toArray
     </h3>
@@ -791,6 +906,101 @@
     
       
       <pre class='p1 overflow-auto round fill-light'>toArray({ <span class="hljs-attr">x</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">y</span>: <span class="hljs-number">2</span>, <span class="hljs-attr">z</span>: <span class="hljs-number">3</span> }); <span class="hljs-comment">// [{ k: 'x', v: 1 }, { k: 'y', v: 2 }, { k: 'z', v: 3 }]</span></pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+        
+      
+        
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='toarrayall'>
+      toArrayAll
+    </h3>
+    
+    
+  </div>
+  
+
+  <div class="markdown-body">
+    <p>This function converts an any value to new an array object</p>
+
+  </div>
+
+  <div class='pre p1 fill-light mt0'>toArrayAll</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>v</span> <code class='quiet'>(any)</code>
+	    An any value
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>callback</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">function</a>?)</code>
+	    Function which will be call on every element of an iterable object or a plain object
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>context</span> <code class='quiet'>(any?)</code>
+	    Value which will be use as context(this) when executed callback function
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></code>:
+        
+
+      
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>toArrayAll(<span class="hljs-literal">undefined</span>) <span class="hljs-comment">// [undefined]</span></pre>
     
   
 
