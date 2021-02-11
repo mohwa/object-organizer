@@ -41,7 +41,9 @@ import {
   toPlainObject,
   toMap,
   toSet,
+  toSetAll,
   toArray,
+  toArrayAll,
 } from 'object-organizer';
  
 toPlainObject(''); // {}
@@ -101,6 +103,21 @@ toSet(
   { x: 1 }
 ); // Set {{ v: 1, _this: { x: 1 } },{ v: 2, _this: { x: 1 } },{ v: 3, _this: { x: 1 } }}
 
+toSetAll('1'); // Set { '1' }
+toSetAll(1); // Set { 1 }
+toSetAll(true); // Set { true }
+toSetAll(undefined); // Set { undefined }
+toSetAll(null); // Set { null }
+toSetAll(Symbol(3)); // Set { Symbol(3) }
+toSetAll(function() {}); // Set { [Function] }
+toSetAll(''); // Set { '' }
+toSetAll('  '); // Set { ' ' }
+toSetAll([1, 2, 3]); // Set { 1, 2, 3 }
+toSetAll({ x: 1, y: 2, z: 3 }); // Set { { k: 'x', v: 1 }, { k: 'y', v: 2 }, { k: 'z', v: 3 } }
+toSetAll({}); // Set {}
+toSetAll([]); // Set {}
+
+
 toArray(''); // []
 toArray('   '); // [ ' ', ' ', ' ' ]
 toArray('test'); // [ 't', 'e', 's', 't' ]
@@ -119,6 +136,21 @@ toArray(
   },
   { x: 1 }
 ); // [{ v: 1, _this: { x: 1 } },{ v: 2, _this: { x: 1 } },{ v: 3, _this: { x: 1 } }]
+
+// toArrayAll converts an any element unlike a toArray
+toArrayAll('1'); // ['1']
+toArrayAll(1); // [1]
+toArrayAll(true); // [true]
+toArrayAll(undefined); // [undefined]
+toArrayAll(null); // [null]
+toArrayAll(Symbol(3)); // [Symbol(3)]
+toArrayAll(function(){}); // [[Function]]
+toArrayAll(''); // ['']
+toArrayAll('  '); // ['', '']
+toArrayAll([1, 2, 3]); // [1, 2, 3]
+toArrayAll({ x: 1, y: 2, z: 3 }); // [{ k: 'x', v: 1}, { k: 'y', v: 2}, { k: 'z', v: 3}]
+toArrayAll({}); // []
+toArrayAll([]); // []
  ```
 
 ## Copy API

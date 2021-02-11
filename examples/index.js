@@ -22,6 +22,7 @@ import {
   findIndex,
   unshift,
   push,
+  toSetAll,
 } from '../lib';
 
 console.log(assign([1, 2, 3], 33, 33, 44)); // [ 1, 2, 3, 33, 33, 44 ]
@@ -259,3 +260,17 @@ console.log(unshift([1, 2, 3], 11, 22, 33));
 
 console.log(push([], 11, 22, 33));
 console.log(push([1, 2, 3], 11, 22, 33));
+
+console.log(toSetAll('1')); // Set { '1' }
+console.log(toSetAll(1)); // Set { 1 }
+console.log(toSetAll(true)); // Set { true }
+console.log(toSetAll(undefined)); // Set { undefined }
+console.log(toSetAll(null)); // Set { null }
+console.log(toSetAll(Symbol(3))); // Set { Symbol(3) }
+console.log(toSetAll(function() {})); // Set { [Function] }
+console.log(toSetAll('')); // Set { '' }
+console.log(toSetAll('  ')); // Set { ' ' }
+console.log(toSetAll([1, 2, 3])); // Set { 1, 2, 3 }
+console.log(toSetAll({ x: 1, y: 2, z: 3 })); // Set { { k: 'x', v: 1 }, { k: 'y', v: 2 }, { k: 'z', v: 3 } }
+console.log(toSetAll({})); // Set {}
+console.log(toSetAll([])); // Set {}
